@@ -26,7 +26,6 @@ let checkCart = false
         <RouterLink to="/product">product</RouterLink>
         <a @click="this.$router.push('/')">logout</a>
       </nav>
-      
     </div>
       <div class="dropdown open" v-if="checkCart">
       <ChartVue  />

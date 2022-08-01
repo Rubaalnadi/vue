@@ -52,11 +52,12 @@ export default {
         password: this.password,
         
       };
-      this.users.find(element => {
+      this.users.filter(element => {
         if(element.email === this.email && element.password === this.password){
           console.log('yes');
             this.$router.push("product");
-            this.check = true
+            this.check = true;
+            localStorage.userId = element.id
         }else{
           this.check = false
         }

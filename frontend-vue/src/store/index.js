@@ -36,10 +36,12 @@ export default createStore({
     category : [1,2,3,4] ,
     user: [
       {
+        id : 1,
         email:"rubaalanadi@gmail.com",
         password : "123"
       },
       {
+        id : 2,
         email:"rubaalanadi5@gmail.com",
         password : "12345"
       }
