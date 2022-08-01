@@ -9,11 +9,6 @@ export default createStore({
     UPDATE_user(state, payload) {
       state.user = payload;
     },
-    resetState(state) {
-      _.forOwn(initialStoreModules, (value, key) => {
-        state[key] = _.cloneDeep(value.state);
-      });
-    },
     ADD_TO_CART(state, { product, quantity }) {
       state.cart.push({
         product,

@@ -45,23 +45,28 @@ export default {
   methods: {
     checkLogin() {
       const data = {
+        // email : "rubaalnadi@gmail.com",
+        // password : "123"
         email: this.email,
         password: this.password,
+        userEmail : this.$store.state.user
       };
-      axios
-        .post("http://localhost:5000/login", data)
-        .then((response) => {
-          console.log(response);
-          localStorage.token = response.data.token;
-          localStorage.userId = response.data.user_id;
-          this.$router.push("product");//to navigate to rout product
-          this.$store.dispatch('addTouser', response.data.user_id)
-          console.log( this.$store.state.user)
+      console.log(this.$store.state.user);
+      this.$router.push("product");//to navigate to rout product
+      // axios
+      //   .post("http://localhost:5000/login", data)
+      //   .then((response) => {
+      //     console.log(response);
+      //     localStorage.token = response.data.token;
+      //     localStorage.userId = response.data.user_id;
+      //     this.$router.push("product");//to navigate to rout product
+      //     this.$store.dispatch('addTouser', response.data.user_id)
+      //     console.log( this.$store.state.user)
 
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
     },
   },
 };

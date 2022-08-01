@@ -47,17 +47,19 @@ import axios from 'axios'
             email : this.email,
             password : this.password
           };
-           axios
-            .post("http://localhost:5000/users", 
-            data
-          )
-          .then(response => (
-            console.log(response),
-            this.checked = true
-            ))
-          .catch((err) => {
-            console.log(err)
-          })
+          this.$store.dispatch('addTouser', this.email)
+          console.log( this.$store.state.user)
+          //  axios
+          //   .post("http://localhost:5000/users", 
+          //   data
+          // )
+          // .then(response => (
+          //   console.log(response),
+          //   this.checked = true
+          //   ))
+          // .catch((err) => {
+          //   console.log(err)
+          // })
           }
   }
     }

@@ -2,18 +2,12 @@
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
 import ChartVue from "./views/ChartVue.vue";
-// let user = ""
+let checkCart = false
 // let to = localStorage.getItem("token")
 </script>
 
 <template>
-  <div class="dropdown open">
-    <div @click="$event.stopPropagation()">
-      <ChartVue />
-    
-    </div>
-  </div>
-  <header class="tem">
+  <header>
 
     <img
       alt="Vue logo"
@@ -34,7 +28,11 @@ import ChartVue from "./views/ChartVue.vue";
       </nav>
       
     </div>
-       <button
+      <div class="dropdown open" v-if="checkCart">
+      <ChartVue  />
+    
+    </div>
+       <!-- <button
       class="btn btn-secondary dropdown-toggle"
       type="button"
       id="triggerId"
@@ -43,7 +41,7 @@ import ChartVue from "./views/ChartVue.vue";
       aria-expanded="false"
     >
       Cart
-    </button>
+    </button> -->
   </header>
 
   <RouterView />
