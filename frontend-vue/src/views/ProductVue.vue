@@ -1,34 +1,21 @@
 <template>
   <p @click="this.$router.push('/cart')">Chart {{ count }}</p>
-  <div class="container d-flex align-items-stretch flex-wrap">
-<!-- v-for="prod in products" -->
+  <div v-for="prod in products" class="container d-flex align-items-stretch flex-wrap">
     <div class="card test-card">
-      <img v-bind:src="breadImg" alt="test" class="prod-img mb-2" />
-      <p>bread</p>
-      <p>5 $</p>
-      <p>loream</p>
-      <b-button class="btn" @click="addToCart">Add</b-button>
-      <!-- <img v-bind:src="prod.img" class="prod-img mb-2" alt="img-prod" />
-      <p>{{ prod.name }}</p>
-      <img v-bind:src="shopkImg" class="shopk" />
-      <p class="price">{{ prod.price }} $</p>
-      <p>{{ prod.smalldescription }}</p>
-      <b-button class="btn" @click="addToCart">Add</b-button> -->
+      <img v-bind:src="prod.prodImg" alt="test" class="prod-img mb-2" />
+      <p>{{prod.name}}</p>
+      <b-button class="btn" @click="addToCart(prod.id,prod.category,prod.name,prod.prodImg)">Add</b-button>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import shopk from "../assets/sho.png";
-import bread from "../assets/bread.jpg"
 export default {
   data: function () {
     return {
       // token: localStorage.getItem("token"),
-      products: ['bread'],
-      shopkImg: shopk,
-      breadImg : bread,
+      products: this.$store.state.products,
       count: 0
     };
   },
@@ -50,15 +37,19 @@ export default {
     //       console.log(err);
     //     });
     // },
-    addToCart() {
+
+    addToCart(id,category,name,prodImg) {
        this.count++;
        this.$store.dispatch('addProductToCarrt',{
-         product:this.products,
-         quantity : 1
+         id: id,
+         category : category,
+         name:name,
+         prodImg : prodImg
        })
-       console.log(this.$store.state.cart);
+       console.log(this.$store.state.myProducts);
     },
   },
+  // it use to make response dirictly when open page 
   // beforeMount() {
   //   this.product();
   // },

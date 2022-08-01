@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div>
+    <div v-for="myCart in cart">
       <div class="px-2 d-flex justify-content-between">
         <div>
-          <strong @click="test">test</strong>
-          <p>{{this.product[0].product.join("")}}</p>
+          <img v-bind:src="myCart.prodImg" alt="prpd" class="prod-img mb-2" />
+          <strong>{{myCart.name}}</strong>
           <br />
           
         </div>
@@ -28,13 +28,10 @@
 export default {
   data: function () {
     return {
-   product : this.$store.state.cart
+   cart : this.$store.state.myProducts
     };
   },
   methods: {
-    test(){
-      console.log(this.product);
-    }
   }
 };
 </script>

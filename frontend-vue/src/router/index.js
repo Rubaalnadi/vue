@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import cart from '../views/ChartVue.vue'
+import user from "../views/UserProfile.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -23,6 +24,11 @@ const router = createRouter({
       path: '/cart',
       name: 'cart',
       component: cart
+    },
+    {
+      path: '/user-prof',
+      name: 'user-prof',
+      component: user
     }
   ]
 })

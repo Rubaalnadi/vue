@@ -28,6 +28,7 @@
       <p class="forgot-password text-right mt-2 mb-4">
         <router-link to="/forgot-password">Forgot password ?</router-link>
       </p>
+      <!-- <div v-if="!check" class="alert alert alert-danger" > you don't hava an account </div> -->
     </form>
   </div>
 </template>
@@ -40,19 +41,28 @@ export default {
     return {
       email: "",
       password: "",
+      users : this.$store.state.user,
+      check : false
     };
   },
   methods: {
     checkLogin() {
       const data = {
-        // email : "rubaalnadi@gmail.com",
-        // password : "123"
         email: this.email,
         password: this.password,
-        userEmail : this.$store.state.user
+        
       };
+      this.users.find(element => {
+        if(element.email === this.email && element.password === this.password){
+          console.log('yes');
+            this.$router.push("product");
+            this.check = true
+        }else{
+          this.check = false
+        }
+      });
       console.log(this.$store.state.user);
-      this.$router.push("product");//to navigate to rout product
+      //to navigate to rout product
       // axios
       //   .post("http://localhost:5000/login", data)
       //   .then((response) => {
