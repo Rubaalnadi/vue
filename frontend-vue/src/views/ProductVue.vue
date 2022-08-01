@@ -1,7 +1,7 @@
 <template>
   <p @click="this.$router.push('/cart')">Chart {{ count }}</p>
   <div v-for="prod in products" class="container d-flex align-items-stretch flex-wrap">
-    <div class="card test-card">
+    <div class="card test-card" @click="test(proud.id)">
       <img v-bind:src="prod.prodImg" alt="test" class="prod-img mb-2" />
       <p>{{prod.name}}</p>
       <b-button class="btn" @click="addToCart(prod.id,prod.category,prod.name,prod.prodImg)">Add</b-button>
@@ -48,6 +48,9 @@ export default {
        })
        console.log(this.$store.state.myProducts);
     },
+    test(id){
+        console.log(id);
+    }
   },
   // it use to make response dirictly when open page 
   // beforeMount() {

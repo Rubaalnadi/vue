@@ -16,6 +16,7 @@
   <br />
   <br />
 </div>
+<p> {{this.test}} </p>
 </template>
 <script>
 export default {

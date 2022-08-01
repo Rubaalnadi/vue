@@ -48,7 +48,7 @@ import axios from 'axios'
             password : this.password
           };
           this.$store.dispatch('addTouser', this.email)
-          console.log( this.$store.state.user)
+          console.log( this.$store.state.user)  
           //  axios
           //   .post("http://localhost:5000/users", 
           //   data
