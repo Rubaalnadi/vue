@@ -46,6 +46,7 @@ export default createStore({
         password : "12345"
       }
     ],
+    count : 0
     // cart: [],
   },
   mutations: {
@@ -60,6 +61,9 @@ export default createStore({
         category
       });
     },
+    increase(state){
+      state.count = state.count +1
+    }
   },
   actions: {
     // addTouser(context, payload) {

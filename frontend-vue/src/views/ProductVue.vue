@@ -1,12 +1,14 @@
 <template>
-  <p @click="this.$router.push('/cart')">Chart {{ count }}</p>
-  <div v-for="prod in products" class="container d-flex align-items-stretch flex-wrap">
-    <div class="card test-card" @click="test(proud.id)">
+ <section>
+   <p @click="this.$router.push('/cart')">Chart {{ count }}</p>
+  <div v-for="prod in products" class="container d-flex align-items-stretch flex-wrap" :key="prod.id">
+    <div class="card test-card" @click="test(prod.id)">
       <img v-bind:src="prod.prodImg" alt="test" class="prod-img mb-2" />
       <p>{{prod.name}}</p>
       <b-button class="btn" @click="addToCart(prod.id,prod.category,prod.name,prod.prodImg)">Add</b-button>
     </div>
   </div>
+ </section>
 </template>
 
 <script>
@@ -16,7 +18,7 @@ export default {
     return {
       // token: localStorage.getItem("token"),
       products: this.$store.state.products,
-      count: 0
+      count: this.$store.state.count
     };
   },
   methods: {
@@ -47,6 +49,7 @@ export default {
          prodImg : prodImg
        })
        console.log(this.$store.state.myProducts);
+       console.log(this.$store.state.count);
     },
     test(id){
         console.log(id);

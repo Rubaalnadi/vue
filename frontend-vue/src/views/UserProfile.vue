@@ -1,4 +1,5 @@
 <template>
+<section> 
   <p> userEmail: {{this.email}}</p>
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -11,12 +12,13 @@
   </div>
 </div>
 <br />
-<div v-for="cat in category">
+<div v-for="(cat,index) in category" :key="index">
   <button @click="getCatById(cat)">{{cat}}</button>
   <br />
   <br />
 </div>
 <p> {{this.test}} </p>
+</section>
 </template>
 <script>
 export default {
