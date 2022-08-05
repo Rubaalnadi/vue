@@ -1,5 +1,6 @@
 <template>
   <div class="vue-tempalte">
+    <!-- <heade></heade> -->
     <form @submit.prevent="checkLogin">
       <h3>Log In</h3>
 
@@ -28,21 +29,25 @@
       <p class="forgot-password text-right mt-2 mb-4">
         <router-link to="/forgot-password">Forgot password ?</router-link>
       </p>
-      <!-- <div v-if="!check" class="alert alert alert-danger" > you don't hava an account </div> -->
     </form>
+      <!-- <div v-if="!check" class="alert alert alert-danger" > you don't hava an account </div> -->
   </div>
 </template>
 
 <script>
+import heade from "../components/Header.vue";
 import axios from "axios";
 export default {
   // props: ['user' ,'to'],
+  components:{
+    heade
+  },
   data: function () {
     return {
       email: "",
       password: "",
       users : this.$store.state.user,
-      check : false
+      
     };
   },
   methods: {

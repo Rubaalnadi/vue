@@ -46,7 +46,8 @@ export default createStore({
         password : "12345"
       }
     ],
-    count : 0
+    count : 0,
+    isLoggedIn : false,
     // cart: [],
   },
   mutations: {
@@ -63,6 +64,9 @@ export default createStore({
     },
     increase(state){
       state.count = state.count +1
+    },
+    setAuth(state,payload){
+      state.isLoggedIn = payload.isAuth
     }
   },
   actions: {
@@ -74,8 +78,17 @@ export default createStore({
     addProductToCarrt({ commit }, { id ,name, prodImg, category  }) {
       commit("ADD_TO_CART", { id ,name, prodImg, category });
     },
+    login(conntext){
+      conntext.commit("setAuth",{isAuth:true})
+    },
+    logout(conntext){
+      conntext.commit("setAuth",{isAuth:false})
+    }
   },
   getters: {
+    userIsAuthenticated(state){
+      return state.isLoggedIn;
+    }
 
   },
 });

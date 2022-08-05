@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
 import ChartVue from "./views/ChartVue.vue";
 let checkCart = false
-// let to = localStorage.getItem("token")
+let to = localStorage.getItem("token")
 </script>
 
 <template>
@@ -18,7 +18,7 @@ let checkCart = false
     />
  
     <div class="wrapper">
-      <!-- <HelloWorld msg="You did it!" /> -->
+      <HelloWorld msg="You did it!" />
 
       <nav>
         <RouterLink to="/">login</RouterLink>
@@ -31,19 +31,9 @@ let checkCart = false
       <ChartVue  />
     
     </div>
-       <!-- <button
-      class="btn btn-secondary dropdown-toggle"
-      type="button"
-      id="triggerId"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-    >
-      Cart
-    </button> -->
+  <RouterView />
   </header>
 
-  <RouterView />
 </template>
 <style scoped>
 header {
