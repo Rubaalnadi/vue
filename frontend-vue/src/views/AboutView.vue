@@ -25,10 +25,12 @@
                 <router-link :to="{name: 'login'}">sign in?</router-link>
             </p>
         </form>
+        <div v-if="!check" class="alert alert alert-danger" > your email or password wrong </div>
     </div>
 </template>
  
-<script>
+<script >
+// lang="ts"
 import axios from 'axios'
     export default {
         data: function() {
@@ -36,19 +38,25 @@ import axios from 'axios'
             userName : "",
             email : "",
             password : "",
+            id : 3,
             // role: "61ddd88b5abc886c938dc621",
-            checked : false
+            checked : false,
+            check : true
             }
         },
          methods:{
            mounted ()  {
-             const data = {
-            userName : this.userName,
-            email : this.email,
-            password : this.password
-          };
-          this.$store.dispatch('addTouser', this.email)
-          console.log( this.$store.state.user)  
+            if(this.email != '' && this.password != ''){
+                this.$store.dispatch('addUser', {
+                  id : this.id,
+                  email : this.email,
+                  password : this.password
+                })
+                    this.checked = true
+                    console.log( this.$store.state.user)  
+            }else{
+                this.check = false
+            }
           //  axios
           //   .post("http://localhost:5000/users", 
           //   data
@@ -66,6 +74,9 @@ import axios from 'axios'
 </script>
 
 <style>
+form{
+    margin-top: 20rem;
+}
 @media (min-width: 1024px) {
   .about {
     min-height: 100vh;

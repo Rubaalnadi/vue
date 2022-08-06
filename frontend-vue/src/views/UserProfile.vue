@@ -1,23 +1,14 @@
 <template>
 <section> 
   <p> userEmail: {{this.email}}</p>
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
+
 <br />
 <div v-for="(cat,index) in category" :key="index">
   <button @click="getCatById(cat)">{{cat}}</button>
   <br />
   <br />
 </div>
-<p> {{this.test}} </p>
+<p v-if="prodName"> {{prodName}} </p>
 </section>
 </template>
 <script>
@@ -29,13 +20,14 @@ export default {
         user : this.$store.state.user,
         email : "",
         id : localStorage.getItem("userId"),
+        prodName : null
     };
   },
   methods: {
     getCatById (id){
-        this.product.filter(function(elem){
-    if(elem.category == id){
-        console.log(elem);
+        this.product.filter(elem => {
+           if(elem.category == id){
+               this.prodName = elem.name
     }
 });
     },

@@ -1,6 +1,5 @@
 <template>
   <div class="vue-tempalte">
-    <!-- <heade></heade> -->
     <form @submit.prevent="checkLogin">
       <h3>Log In</h3>
 
@@ -27,10 +26,10 @@
       </button>
 
       <p class="forgot-password text-right mt-2 mb-4">
-        <router-link to="/forgot-password">Forgot password ?</router-link>
+        <router-link to="/sign-up">Dont have account yet!</router-link>
       </p>
     </form>
-      <!-- <div v-if="!check" class="alert alert alert-danger" > you don't hava an account </div> -->
+      <div v-if="!checked" class="alert alert alert-danger" > your email or password wrong </div>
   </div>
 </template>
 
@@ -47,6 +46,7 @@ export default {
       email: "",
       password: "",
       users : this.$store.state.user,
+      checked : true
       
     };
   },
@@ -61,10 +61,11 @@ export default {
         if(element.email === this.email && element.password === this.password){
           console.log('yes');
             this.$router.push("product");
-            this.check = true;
             localStorage.userId = element.id
+            this.$store.dispatch('login')
+            console.log(this.checked);
         }else{
-          this.check = false
+          this.checked = false
         }
       });
       console.log(this.$store.state.user);
@@ -87,3 +88,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+  form{
+    margin-top: 20rem ;
+  }
+</style>

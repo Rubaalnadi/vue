@@ -1,100 +1,61 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
-import ChartVue from "./views/ChartVue.vue";
-let checkCart = false
-let to = localStorage.getItem("token")
+<template>
+<section>
+  <the-header></the-header>
+  <router-view v-slot="slotProps">
+    <transition name="route">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
+
+</section>
+</template>
+
+<script lang="ts">
+import TheHeader from "./components/Header.vue";
+
+export default {
+  components: {
+    TheHeader
+  }  
+}
 </script>
 
-<template>
-  <header>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/bakery-logo.png"
-      width="125"
-      height="125"
-    />
- 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">login</RouterLink>
-        <RouterLink to="/sign-up">sign-up</RouterLink>
-        <RouterLink to="/product">product</RouterLink>
-        <a @click="this.$router.push('/')">logout</a>
-      </nav>
-    </div>
-      <div class="dropdown open" v-if="checkCart">
-      <ChartVue  />
-    
-    </div>
-  <RouterView />
-  </header>
-
-</template>
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+* {
+  box-sizing: border-box;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+html {
+  font-family: "Roboto", sans-serif;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+body {
+  margin: 0;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.route-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.route-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+.route-enter-active {
+  transition: all 0.3s ease-out;
 }
 
-nav a:first-of-type {
-  border: 0;
+.route-leave-active {
+  transition: all 0.3s ease-in;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.route-enter-to,
+.route-leave-from {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
